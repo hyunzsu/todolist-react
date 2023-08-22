@@ -6,12 +6,12 @@ export default function TodoList() {
     { id: '123', text: '장보기', status: 'active' },
     { id: '124', text: '공부하기', status: 'active' },
   ]);
-
   const handleAdd = (todo) => {
     // 새로운 투두를 todos에 업데이트 해야 함
     console.log(todo);
     setTodos([...todos, todo])
   }
+  
   return (
     <section>
       <ul>
