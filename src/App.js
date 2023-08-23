@@ -8,14 +8,14 @@ function App() {
   const [filter, setFilter] = useState(filters[0]); // 현재 선택된 필터
 
   return (
-    <div>
+    <>
       <Header
         filters={filters} // 전체 필터
         filter={filter} // 현재 선택된 필터('all')
         onFilterChange={(filter) => setFilter(filter)} // 필터 변경될때
       />
       <TodoList filter={filter} />
-    </div>
+    </>
   );
 }
 
