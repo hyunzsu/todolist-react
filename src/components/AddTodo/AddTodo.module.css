@@ -6,7 +6,8 @@
 }
 
 .input {
-  flex: 1 0 auto;
+  /* flex: 1 0 auto; */
+  flex-grow: 1;
   font-size: 1.4rem;
   padding: 0.7rem 1rem;
   border: none;
