@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import styles from './LoginForm.module.css';
+import styles from './SignIn.module.css';
 import { DarkModeProvider } from '../../context/DarkModeContext';
 import Title from '../../components/Title/Title';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase-conifg';
 
-export default function LoginForm() {
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -17,8 +17,8 @@ export default function LoginForm() {
     try {
       const user = await signInWithEmailAndPassword(
         auth,
-        loginEmail,
-        loginPassword
+        email,
+        password
       );
       console.log(user);
       console.log('로그인 성공');
@@ -40,7 +40,7 @@ export default function LoginForm() {
           type='text'
           placeholder='Email'
           onChange={(e) => {
-            setLoginEmail(e.target.value);
+            setEmail(e.target.value);
           }}
         />
         <input
@@ -48,7 +48,7 @@ export default function LoginForm() {
           type='password'
           placeholder='Password'
           onChange={(e) => {
-            setLoginPassword(e.target.value);
+            setPassword(e.target.value);
           }}
         />
         <button className={styles.button} onClick={login}>
