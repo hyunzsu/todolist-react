@@ -1,17 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 import TodoPage from './pages/TodoPage/TodoPage';
 import SignIn from './pages/SignIn/SignIn';
-import Register from './pages/Register/Register';
+import SignUp from './pages/SignUp/SignUp';
+import { AuthProvider } from './context/AuthContext';
+
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Routes>
         <Route path='/' element={<TodoPage/>} />
-        <Route path='login' element={<SignIn/>} />
-        <Route path='register' element={<Register/>} />
+        <Route path='signin' element={<SignIn/>} />
+        <Route path='signup' element={<SignUp/>} />
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 

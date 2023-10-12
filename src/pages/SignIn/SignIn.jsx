@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SignIn.module.css';
 import { DarkModeProvider } from '../../context/DarkModeContext';
 import Title from '../../components/Title/Title';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase-conifg';
+import { useAuth } from '../../context/AuthContext';
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {email, setEmail, password, setPassword} = useAuth()
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   // 로그인
-  const login = async () => {
+  const signIn = async () => {
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -51,7 +51,7 @@ export default function SignIn() {
             setPassword(e.target.value);
           }}
         />
-        <button className={styles.button} onClick={login}>
+        <button className={styles.button} onClick={signIn}>
           Login
         </button>
       </form>
