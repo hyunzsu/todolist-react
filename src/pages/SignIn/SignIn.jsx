@@ -32,7 +32,7 @@ export default function SignIn() {
         />
         <input
           className={`${styles.input} ${styles.email}`}
-          type='text'
+          type='email'
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
         />

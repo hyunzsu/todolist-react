@@ -7,11 +7,52 @@ import { auth } from '../../firebase-conifg';
 import { useAuth } from '../../context/AuthContext';
 
 export default function SignUp() {
-  const { email, setEmail, password, setPassword } = useAuth();
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    emailMessage,
+    setEmailMessage,
+    passwordMessage,
+    setPasswordMessage,
+    setIsEmail,
+    setIsPassword,
+  } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
+  // 이메일
+  const onChangeEmail = (e) => {
+    const emailRegex = /.*@.+/; // 이메일은 '@' 기호를 포함해야 합니다.
+    const emailCurrent = e.target.value
+    setEmail(emailCurrent)
+
+    if (!emailRegex.test(emailCurrent)) {
+      setEmailMessage('이메일 형식이 올바르지 않습니다.')
+      setIsEmail(false)
+    } else {
+      setEmailMessage('')
+      setIsEmail(true)
+    }
+  }
+
+  // 비밀번호
+  const onChangePassword = (e) => {
+    const passwordRegex = /^.{8,}$/; // 비밀번호는 8자리 이상이어야 합니다.
+    const passwordCurrent = e.target.value
+    setPassword(passwordCurrent)
+
+    if (!passwordRegex.test(passwordCurrent)) {
+      setPasswordMessage('비밀번호는 8자리 이상이어야 합니다.')
+      setIsPassword(false)
+    } else {
+      setPasswordMessage('')
+      setIsPassword(true)
+    }
+  }
+ 
   // 회원가입
   const signUp = async () => {
     try {
@@ -36,16 +77,18 @@ export default function SignUp() {
         />
         <input
           className={`${styles.input} ${styles.email}`}
-          type='text'
+          type='email'
           placeholder='Email'
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={onChangeEmail}
         />
+        {email.length > 0 && <span className={styles.error}>{emailMessage}</span>}
         <input
           className={`${styles.input} ${styles.password}`}
           type='password'
           placeholder='Password'
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={onChangePassword}
         />
+        {password.length > 0 && <span className={styles.error}>{passwordMessage}</span>}
         <button className={styles.button} onClick={signUp}>
           Register
         </button>

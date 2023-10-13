@@ -26,7 +26,7 @@
   border: none;
   border-bottom: 2px solid var(--color-accent);
   outline: none;
-  padding: 0.7rem 1rem;
+  padding: 1rem 1rem;
   background-color: var(--color-bg-dark);
   margin: 0.5rem 3rem;
 }
